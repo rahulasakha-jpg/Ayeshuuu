@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="ayeshuuu" content="width=device-width, initial-scale=1.0">
+    <title>आपके लिए एक सरप्राइज</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            margin-top: 100px;
+        }
+        .step {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e60000;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- लेवल 1: नाम दर्ज करना -->
+    <div id="step1" class="step active">
+        <h2>स्वागत है! पहले अपना नाम दर्ज करें:</h2>
+        <input type="text" id="nameInput" placeholder="यहाँ नाम लिखें...">
+        <br>
+        <button onclick="nextStep(1)">अगला</button>
+    </div>
+
+    <!-- लेवल 2: एक पहेली या सवाल -->
+    <div id="step2" class="step">
+        <h2 id="greeting"></h2>
+        <p>क्या आप दुनिया के सबसे खास इंसान को जानते हैं?</p>
+        <button onclick="nextStep(2)">हाँ, बहुत अच्छे से!</button>
+    </div>
+
+    <!-- लेवल 3: मूड या पसंद पूछना -->
+    <div id="step3" class="step">
+        <h2>एक आखिरी सवाल...</h2>
+        <p>क्या आपको मेरा साथपसंद है?</p>
+        <button onclick="nextStep(3)">हाँ, बहुत ज्यादा!</button>
+    </div>
+
+    <!-- फाइनल लेवल: प्रपोजल -->
+    <div id="step4" class="step">
+        <h1>❤️ I Love You! ❤️</h1>
+        <p>क्या तुम हमेशा के लिए मेरी वेंटर/जीवनसाथी बनना चाहोगी?</p>
+        <h2 style="color: #d63031;">तुम्हारी हाँ का इंतज़ार रहेगा!</h2>
+    </div>
+
+    <script>
+        let userName = "";
+
+        function nextStep(current) {
+            if (current === 1) {
+                userName = document.getElementById("nameInput").value;
+                if (userName.trim() === "") {
+                    alert("कृपया पहले अपना नाम लिखें!");
+                    return;
+                }
+                document.getElementById("greeting").innerText = "नमस्ते, " + userName + "!";
+            }
+
+            // वर्तमान स्टेप छुपाएं
+            document.getElementById("step" + current).classList.remove("active");
+            
+            // अगला स्टेप दिखाएं
+            let next = current + 1;
+            document.getElementById("step" + next).classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
